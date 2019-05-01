@@ -1,0 +1,30 @@
+{
+  "name": "od12.github.io",
+  "version": "1.0.0",
+  "description": "Open Data CW2: Group 12",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/od12/od12.github.io.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/od12/od12.github.io/issues"
+  },
+  "homepage": "https://github.com/od12/od12.github.io#readme",
+  "dependencies": {
+    "fs": "0.0.1-security",
+    "jquery": "^3.4.1",
+    "net": "^1.0.2",
+    "request": "^2.88.0",
+    "tls": "0.0.1",
+    "webpack": "^4.30.0",
+    "webpack-cli": "^3.3.1",
+    "zoopla": "^1.0.0"
+  }
+}
