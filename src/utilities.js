@@ -5,7 +5,7 @@ const apikeys = require('./apikeys');
 const d = {
   getOfcomInfo: (type, postcode) => {
     var options = {
-      url: "https://api-proxy.ofcom.org.uk/" + type + "/coverage/" + postcode,
+      url: `https://api-proxy.ofcom.org.uk/${type}/coverage/${postcode}`,
       headers: {
         'User-Agent': 'request',
         'Ocp-Apim-Subscription-Key': apikeys.OFCOM

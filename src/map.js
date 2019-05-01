@@ -38,6 +38,7 @@ const d = {
   },
 
   getPostcode: (latitude, longitude) => {
+    var url = `https://api.postcodes.io/postcodes?lat=${latitude}&lon=${longitude}`;
     return new Promise((resolve, reject) => {
       request.get(url, (err, resp, body) => {
         if (err) reject(err);
@@ -45,7 +46,7 @@ const d = {
           var data = JSON.parse(body);
           if (data.result && data.result.length) {
             var postcode = data.result[0].postcode;
-            console.log('Found postcode: ' + postcode);
+            console.log(`Found postcode: ${postcode}`);
             resolve(postcode);
           } else {
             reject(err);
@@ -63,11 +64,11 @@ const d = {
     //bottom right = box[2] and box[1]
     //top left = box[0] and box[3]
     //top right = box[2] and box[3] 
-    var bottom_left = box[1] + "," + box[0];
-    var bottom_right = box[1] + "," + box[2];
-    var top_left = box[3] + "," + box[0];
-    var top_right = box[3] + "," + box[2];
-    const url = "https://data.police.uk/api/crimes-street/all-crime?poly=" + bottom_left + ":" +bottom_right + ":" + top_left + ":" + top_right;
+    var bl = `${box[1]},${box[0]}`;
+    var br = `${box[1]},${box[2]}`;
+    var tl = `${box[3]},${box[0]}`;
+    var tr = `${box[3]},${box[2]}`;
+    const url = `https://data.police.uk/api/crimes-street/all-crime?poly=${bl}:${br}:${tl}:${tr}`;
     //console.log(url);
     return new Promise((resolve, reject) => {
       request.get(url, (err, resp, body) => {
