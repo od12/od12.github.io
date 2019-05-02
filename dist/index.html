@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="css/ol.css" type="text/css" >
+    <link rel="stylesheet" href="css/ol3-sidebar.min.css" >
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css"> 
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto" rel="stylesheet"> 
+
+    <script src="js/ol.js"></script>
+
+    <title>OD12</title>
+  </head>
+  <body>
+
+    <div id="sidebar" class="sidebar collapsed">
+      <div class="sidebar-tabs">
+        <ul role="tablist">
+          <li><a href="#home" role="tab"><i class="fa fa-bars"></i></a></li>
+          <li><a href="#about" role="tab"><i class="fa fa-info-circle"></i></a></li>
+        </ul>
+      </div>
+
+      <div class="sidebar-content">
+        <div class="sidebar-pane" id="home">
+          <h1 class="sidebar-header">
+            <span id="content-header">Dynamic Content Goes Here</span>
+            <span class="sidebar-close"><i class="fa fa-caret-right"></i></span>
+          </h1>
+          <div id="content">
+            <p>Actual content about property details, crimes, utilities, etc.</p>
+          </div>
+        </div>
+
+        <div class="sidebar-pane" id="about">
+          <h1 class="sidebar-header">
+            About
+            <span class="sidebar-close"><i class="fa fa-caret-right"></i></span>
+          </h1>
+
+          <p>This application was created by Group 12 of the Open Data Innovation module at the University of Southampton.<p>
+          <ul>
+            <li>Samson Danziger</li>
+            <li>Matthew Jones</li>
+            <li>Doug Morgan</li>
+            <li>Shantu Singh</li>
+          </ul>
+
+          <hr />
+
+          <a href="https://zoopla.co.uk">
+            <img src="https://www.zoopla.co.uk/static/images/mashery/powered-by-zoopla-150x73.png" width="150" height="73" title="Property information powered by Zoopla" alt="Property information powered by Zoopla" border="0">
+          </a>
+
+          <hr />
+
+          <p>This application also makes use of various libraries and technologies:</p>
+          <ul>
+            <li>Open Layers - <a href="https://openlayers.org">openlayers.org</a></li>
+            <li>Turbo87's sidebar-v2 - <a href="https://github.com/Turbo87/sidebar-v2">github.com/Turbo87/sidebar-v2</a></li>
+            <li>InsiderByte's zoopla - <a href="https://github.com/InsidersByte/zoopla">github.com/InsidersByte/zoopla</a></li>
+          </ul>
+        </div> 
+      </div>
+    </div>
+
+    <div id="map" class="sidebar-map"></div>
+
+    <script src="js/main.js"></script>
+    <script src="js/ol3-sidebar.min.js"></script>
+    <script>
+      var sidebar = new ol.control.Sidebar({ element: 'sidebar', position: 'right' });
+      map.addControl(sidebar);
+    </script>
+    <style>
+      * {
+        font-family: 'Roboto', 'Open Sans', sans-serif;
+      }
+    </style>
+  </body>
+</html>
+
+
