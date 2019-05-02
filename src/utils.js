@@ -17,6 +17,14 @@ module.exports = {
 
   getContent: () => {
     return $('#content');
+  },
+
+  openSidebar: () => {
+    sidebar.open('home');
+  },
+
+  closeSidebar: () => {
+    sidebar.close();
   }
 }
 
