@@ -12,7 +12,7 @@
     <!-- Import Materialize - https://materializecss.com -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" href="css/style.css" >
-            
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="js/ol.js"></script>
 
     <title>OD12</title>
@@ -103,7 +103,43 @@
       </div>
     </div>
 
-    <input id="pac-input" class="controls" type="text" placeholder="Search Box">
+    
+    <div id="map" class="sidebar-map" style="z-index: 0"></div>
+    <div id="overlay">
+      <div class="nav-wrapper" style="clear:both;">
+        <div class="toolbar-search-container">
+          <form>
+            <div class="input-field">
+              <input id="pac-input" class="controls" type="search" required>
+              <label class="label-icon" for="pac-input"><i class="material-icons">search</i></label>
+              <i class="material-icons">close</i>
+            </div>
+          </form>
+        </div>
+        <div class="toolbar-radius-container">
+            <a id="radiusBtn-low" class="waves-effect waves-light btn toolbar-radius-btn light-blue lighten-2 selected" onclick="radiusBtnClick('low');"><i class="material-icons">directions_walk</i></a>
+            <a id="radiusBtn-med" class="waves-effect waves-light btn toolbar-radius-btn light-blue lighten-2" onclick="radiusBtnClick('med');"><i class="material-icons">directions_bike</i></a>
+            <a id="radiusBtn-high" class="waves-effect waves-light btn toolbar-radius-btn light-blue lighten-2" onclick="radiusBtnClick('high');"><i class="material-icons">directions_car</i></a>
+          </div>
+      </div>
+    </div>
+
+    <script>
+      //global var for radius
+      var radius = 'low';
+      function radiusBtnClick(rad) {
+        // deselect all buttons
+        $('#radiusBtn-low').removeClass('selected');
+        $('#radiusBtn-med').removeClass('selected');
+        $('#radiusBtn-high').removeClass('selected');
+
+        // set selected
+        $('#radiusBtn-' + rad).addClass('selected');
+        radius = rad;        
+      }
+    </script>
+    
+    <!-- <input id="pac-input" class="controls" type="text" placeholder="Search Box"> -->
     <!-- GOOGLE MAPS SEARCH START -->
     <script>
         function initAutocomplete() {
@@ -114,20 +150,6 @@
     </script>
     <!-- GOOGLE MAPS SEARCH END-->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDz03n8_qZ3usFf0ImNOmctHfhZY5K4tMo&libraries=places&callback=initAutocomplete" async defer></script>
-
-    <div id="map" class="sidebar-map" style="z-index: 0"></div>
-    <div id="overlay">
-        <div class="nav-wrapper">
-        <form>
-            <div class="input-field">
-              <input id="search" type="search" required>
-              <label class="label-icon" for="search"><i class="material-icons">search</i></label>
-              <i class="material-icons">close</i>
-            </div>
-          </form>
-        </div>
-    </div>
-
     
     <script src="js/main.js"></script>
     <script src="js/ol3-sidebar.min.js"></script>

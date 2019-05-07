@@ -6,9 +6,34 @@
     -webkit-transform: translateX(-50%);
     transform: translateX(-50%);
     z-index: 9999;
-    width: 70%;
+    width: 50%;
     height: 60px;
     background: white;
+}
+
+.toolbar-search-container {
+    display: inline-block;
+    float: left;
+    width: 70%;
+}
+
+.toolbar-radius-container {
+    display: inline-block;
+    float: right;
+    vertical-align : middle;
+    width: 25%;
+}
+
+.toolbar-radius-btn {
+    margin-top: 10px;
+}
+
+.toolbar-radius-btn.selected {
+    background-color: #039be5 !important;
+}
+
+.pac-container {
+    margin-top: 20px;
 }
 
 /*-------------------------
