@@ -4,11 +4,20 @@ const apikeys = require('./apikeys');
 
 const d = {
   getOfcomInfo: (type, postcode) => {
+    
+    var key = null;
+    if (type == "mobile"){
+      key = apikeys.OFCOM_Mobile;
+    }
+    else{
+      key = apikeys.OFCOM_Broadband;
+    }
+
     var options = {
       url: `https://api-proxy.ofcom.org.uk/${type}/coverage/${postcode}`,
       headers: {
         'User-Agent': 'request',
-        'Ocp-Apim-Subscription-Key': apikeys.OFCOM
+        'Ocp-Apim-Subscription-Key': key
       }
     };
     return new Promise((resolve, reject) => {

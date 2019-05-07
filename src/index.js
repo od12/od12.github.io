@@ -7,6 +7,10 @@ const utils = require('./utils');
 
 map.configureOnClick((latitude, longitude) => {
   console.log(`lat:${latitude} long:${longitude}`);
+  map.getPostcode(latitude, longitude);
+  console.log(apikeys.GOOGLE);
+  map.getAddress(apikeys.GOOGLE);
+  console.log(utilities.getMobileInfo("SO171UJ"));
 });
 
 map.configureOnZoom((level) => {
