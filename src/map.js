@@ -97,7 +97,11 @@ const d = {
     return new Promise((resolve, reject) => {
       request.get(url, (err, resp, body) => {
         if (err) reject(err);
-        else resolve(JSON.parse(body));
+        else {
+          //console.log(JSON.parse(body));
+          resolve(JSON.parse(body));
+        }
+        
       });
     });
   }

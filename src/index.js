@@ -12,6 +12,7 @@ map.configureOnClick((latitude, longitude) => {
 
 map.configureOnZoom((level) => {
   console.log(`zoom:${level}`);
+  //if(level>16) map.getCrimedata();
 });
 
 var input = document.getElementById('pac-input');
