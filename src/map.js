@@ -56,17 +56,22 @@ const d = {
     });
   },
 
-  getAddress: (api_key) => {
-    var url = `https://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&key=${api_key}`;
+  getAddress: (place,api_key) => {
+    var url = `https://maps.googleapis.com/maps/api/geocode/json?address=${place}&key=${api_key}`;
     return new Promise((resolve, reject) => {
       request.get(url, (err, resp, body) => {
         if (err) reject(err);
         else {
           var data = JSON.parse(body);
-          if (data.result && data.result.length) {
-            var postcode = data.result[0].postcode;
-            console.log(`Found postcode: ${postcode}`);
-            resolve(postcode);
+          if (data != null) {
+            var results = data.results;
+            if (results[0].plus_code.compound_code.split(" ")[1].replace(',','') == 'London'){
+              console.log("Location is in london");
+              resolve(results[0]);
+            }
+            else{
+              reject(err);
+            }
           } else {
             reject(err);
           }

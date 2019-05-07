@@ -8,15 +8,26 @@ const utils = require('./utils');
 map.configureOnClick((latitude, longitude) => {
   console.log(`lat:${latitude} long:${longitude}`);
   map.getPostcode(latitude, longitude);
-  console.log(apikeys.GOOGLE);
-  map.getAddress(apikeys.GOOGLE);
-  console.log(utilities.getMobileInfo("SO171UJ"));
 });
 
 map.configureOnZoom((level) => {
   console.log(`zoom:${level}`);
 });
 
+var input = document.getElementById('pac-input');
+var searchBox = new google.maps.places.SearchBox(input);
+
+searchBox.addListener('places_changed', function() {
+  var places = searchBox.getPlaces();
+
+  if (places.length == 0) {
+    return;
+  }
+
+  var place = document.getElementById("pac-input").value;
+  var place = place.split(' ').join('+');
+  map.getAddress(place,apikeys.GOOGLE);
+});
 
 global.map = map.map;
 global.KEYS = apikeys;

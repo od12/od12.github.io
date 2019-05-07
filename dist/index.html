@@ -12,6 +12,7 @@
 
     <title>OD12</title>
   </head>
+  
   <body>
 
     <div id="sidebar" class="sidebar collapsed">
@@ -65,8 +66,21 @@
       </div>
     </div>
 
+    <input id="pac-input" class="controls" type="text" placeholder="Search Box">
+    <!-- GOOGLE MAPS SEARCH START -->
+    <script>
+        function initAutocomplete() {
+        // Create the search box and link it to the UI element.
+        var input = document.getElementById('pac-input');
+        var searchBox = new google.maps.places.SearchBox(input);
+      }
+    </script>
+    <!-- GOOGLE MAPS SEARCH END-->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDz03n8_qZ3usFf0ImNOmctHfhZY5K4tMo&libraries=places&callback=initAutocomplete" async defer></script>
+
     <div id="map" class="sidebar-map"></div>
 
+    
     <script src="js/main.js"></script>
     <script src="js/ol3-sidebar.min.js"></script>
     <script>
@@ -78,6 +92,9 @@
         font-family: 'Roboto', 'Open Sans', sans-serif;
       }
     </style>
+
+
+
   </body>
 </html>
 
