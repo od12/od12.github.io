@@ -30,6 +30,8 @@ searchBox.addListener('places_changed', function() {
   map.getAddress(place,apikeys.GOOGLE);
 });
 
+map.addMarker(0,0);
+
 global.map = map.map;
 global.KEYS = apikeys;
 global.utils = utils;

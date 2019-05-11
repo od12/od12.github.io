@@ -37,6 +37,21 @@ const d = {
     });
   },
 
+  addMarker: (latitude, longitude) => {
+    var marker = new ol.Feature({
+      geometry: new ol.geom.Point(
+        ol.proj.fromLonLat([longitude,latitude])
+      ),
+    });
+    var vectorSource = new ol.source.Vector({
+      features: [marker]
+    });
+    var markerVectorLayer = new ol.layer.Vector({
+      source: vectorSource,
+    })
+    map.addLayer(markerVectorLayer);
+  },
+
   getPostcode: (latitude, longitude) => {
     var url = `https://api.postcodes.io/postcodes?lat=${latitude}&lon=${longitude}`;
     return new Promise((resolve, reject) => {
