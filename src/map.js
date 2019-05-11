@@ -155,12 +155,10 @@ const d = {
     var tl = `${box[3]},${box[0]}`;
     var tr = `${box[3]},${box[2]}`;
     const url = `https://data.police.uk/api/crimes-street/all-crime?poly=${bl}:${br}:${tl}:${tr}`;
-    //console.log(url);
     return new Promise((resolve, reject) => {
       request.get(url, (err, resp, body) => {
         if (err) reject(err);
         else {
-          //console.log(JSON.parse(body));
           resolve(JSON.parse(body));
         }
         
