@@ -27,10 +27,12 @@ searchBox.addListener('places_changed', function() {
 
   var place = document.getElementById("pac-input").value;
   var place = place.split(' ').join('+');
-  map.getAddress(place,apikeys.GOOGLE);
+  map.getAddress(place,apikeys.GOOGLE).then(function(result) {
+    map.addMarker(result.geometry.location.lat, result.geometry.location.lng);
+  }, function(err) {
+    console.log(err); // Error: "It broke"
+  });;
 });
-
-map.addMarker(0,0);
 
 global.map = map.map;
 global.KEYS = apikeys;
