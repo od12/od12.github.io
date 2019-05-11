@@ -12,7 +12,11 @@ map.configureOnClick((latitude, longitude) => {
 
 map.configureOnZoom((level) => {
   console.log(`zoom:${level}`);
-  if(level>18) map.getCrimedata();
+  if(level>17) map.getCrimedata().then(function(result) {
+    console.log(result);
+  }, function(err) {
+    console.log(err); // Error: "It broke"
+  });;
 });
 
 var input = document.getElementById('pac-input');
@@ -31,7 +35,7 @@ searchBox.addListener('places_changed', function() {
     map.addWorkplaceMarker(result.geometry.location.lat, result.geometry.location.lng, document.getElementById("pac-input").value);
   }, function(err) {
     console.log(err); // Error: "It broke"
-  });;
+  });
 });
 
 global.map = map.map;
