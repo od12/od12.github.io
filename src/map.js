@@ -17,6 +17,12 @@ var map = new ol.Map({
   view: view
 });
 
+map.on("singleclick", function (evt) {
+  this.forEachFeatureAtPixel(evt.pixel, function (feature, layer) {
+    window.alert(feature.get("name"));
+  });
+});
+
 const d = {
   map: map,
 
@@ -37,17 +43,58 @@ const d = {
     });
   },
 
-  addMarker: (latitude, longitude) => {
+  addMarker: (latitude, longitude, name) => {
     var marker = new ol.Feature({
       geometry: new ol.geom.Point(
         ol.proj.fromLonLat([longitude,latitude])
       ),
+      name: name
     });
+    var style1 = [
+      new ol.style.Style({
+          image: new ol.style.Icon({
+              scale: .05,
+              src: "https://upload.wikimedia.org/wikipedia/commons/e/e3/Green_Dot.svg",
+         }),
+       zIndex: 5,
+      }), 
+   ];
     var vectorSource = new ol.source.Vector({
       features: [marker]
     });
     var markerVectorLayer = new ol.layer.Vector({
       source: vectorSource,
+      style: function(feature, resolution) {
+        return style1;
+      }
+    })
+    map.addLayer(markerVectorLayer);
+  },
+
+  addWorkplaceMarker: (latitude, longitude, name) => {
+    var marker = new ol.Feature({
+      geometry: new ol.geom.Point(
+        ol.proj.fromLonLat([longitude,latitude])
+      ),
+      name: name
+    });
+    var style1 = [
+      new ol.style.Style({
+          image: new ol.style.Icon({
+              scale: .05,
+              src: "https://upload.wikimedia.org/wikipedia/commons/e/e3/Green_Dot.svg",
+         }),
+       zIndex: 5,
+      }), 
+   ];
+    var vectorSource = new ol.source.Vector({
+      features: [marker]
+    });
+    var markerVectorLayer = new ol.layer.Vector({
+      source: vectorSource,
+      style: function(feature, resolution) {
+        return style1;
+      }
     })
     map.addLayer(markerVectorLayer);
   },
