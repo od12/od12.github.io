@@ -81,8 +81,8 @@ const d = {
     var style1 = [
       new ol.style.Style({
           image: new ol.style.Icon({
-              scale: .05,
-              src: "https://upload.wikimedia.org/wikipedia/commons/e/e3/Green_Dot.svg",
+              scale: .1,
+              src: "https://cdn0.iconfinder.com/data/icons/business-381/500/business-work_11-512.png",
          }),
        zIndex: 5,
       }), 

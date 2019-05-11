@@ -28,7 +28,7 @@ searchBox.addListener('places_changed', function() {
   var place = document.getElementById("pac-input").value;
   var place = place.split(' ').join('+');
   map.getAddress(place,apikeys.GOOGLE).then(function(result) {
-    map.addMarker(result.geometry.location.lat, result.geometry.location.lng, document.getElementById("pac-input").value);
+    map.addWorkplaceMarker(result.geometry.location.lat, result.geometry.location.lng, document.getElementById("pac-input").value);
   }, function(err) {
     console.log(err); // Error: "It broke"
   });;
