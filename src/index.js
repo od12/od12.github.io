@@ -25,8 +25,12 @@ var searchBox = new google.maps.places.SearchBox(input);
 
 function processHouseData(data){
   for(var i = 0; i < data.length; i++){
-    map.addMarker(data[i].location.longitude, data[i].location.latitude, data[i].category);
+    map.addMarker(data[i].location.latitude, data[i].location.longitude, data[i].category);
   }
+}
+
+function processCrimeData(){
+  //todo
 }
 
 searchBox.addListener('places_changed', function() {
