@@ -44,6 +44,7 @@ const d = {
   },
 
   addMarker: (latitude, longitude, name) => {
+    console.log("Adding marker");
     var marker = new ol.Feature({
       geometry: new ol.geom.Point(
         ol.proj.fromLonLat([longitude,latitude])

@@ -13,7 +13,7 @@ map.configureOnClick((latitude, longitude) => {
 map.configureOnZoom((level) => {
   console.log(`zoom:${level}`);
   if(level>17) map.getCrimedata().then(function(result) {
-    console.log(result);
+    processCrimeData(result);
   }, function(err) {
     console.log(err); // Error: "It broke"
   });;
@@ -21,6 +21,13 @@ map.configureOnZoom((level) => {
 
 var input = document.getElementById('pac-input');
 var searchBox = new google.maps.places.SearchBox(input);
+
+
+function processHouseData(data){
+  for(var i = 0; i < data.length; i++){
+    map.addMarker(data[i].location.longitude, data[i].location.latitude, data[i].category);
+  }
+}
 
 searchBox.addListener('places_changed', function() {
   var places = searchBox.getPlaces();
