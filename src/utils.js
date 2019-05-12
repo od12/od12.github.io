@@ -31,6 +31,9 @@ module.exports = {
     $('#mobile').empty();
     $('#politics').empty();
     $('#demographics').empty();
+    $('#age').empty();
+    $('#unemployment').empty();
+    $('#income').empty();
   },
 
   setCrime: (el) =>{
@@ -60,6 +63,18 @@ module.exports = {
   setDemographics: (el) =>{
     $('#demographics').empty();
     $('#demographics').append(el);
+  },
+  setAge: (el) =>{
+    $('#age').empty();
+    $('#age').append(el);
+  },
+  setUnemployment: (el) =>{
+    $('#unemployment').empty();
+    $('#unemployment').append(el);
+  },
+  setIncome: (el) =>{
+    $('#income').empty();
+    $('#income').append(el);
   },
 
   openSidebar: () => {

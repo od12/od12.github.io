@@ -1,7 +1,5 @@
 import * as Zoopla from 'zoopla';
 import apikeys from './apikeys';
-import { map } from './map';
-import { Overlay } from 'ol';
 
 export const zoopla = new Zoopla({ apiKey: apikeys.ZOOPLA });
 

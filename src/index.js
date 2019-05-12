@@ -4,6 +4,7 @@ const utilities = require('./utilities');
 const apikeys = require('./apikeys');
 const utils = require('./utils');
 const census = require('./census');
+const zoopla = require('./zoopla')
 
 
 map.configureOnClick((latitude, longitude) => {
@@ -39,11 +40,14 @@ function processHouseData(data){
 }
 
 function processCrimeData(data){
-  utils.setCrime("There are " + data.length + " crimes in this area!"); 
+  utils.setCrime("Recorded crime in the last month: " + data.length); 
 }
 
 function displayPostCode(lat, long){
   map.getPostcode(lat, long).then(function(result){
+
+    zoopla.addProperties(result.postcode, 1);
+
     utils.setPostcode("Postcode: " + result.postcode);
     map.getBroadband(result.postcode).then(function(broadband){
       utils.setBroadband("<p> Broadband Maximum Download: " + broadband.Availability[0].MaxPredictedDown + "</p> <p> Broadband Maximum Upload: " + broadband.Availability[0].MaxPredictedUp +"</p>");
@@ -59,6 +63,9 @@ function displayPostCode(lat, long){
     if (party == "Lib Dem") party = "Liberal Democrats";
     utils.setPolitics("Political party: " + party);
     utils.setDemographics("Borough Population: " + census[oa_code]["GLA Population Estimate 2017"]);
+    utils.setAge("Average Age: " + census[oa_code]["Average Age, 2017"]);
+    utils.setUnemployment("Unemployment Rate: " + census[oa_code]["Unemployment rate (2015)"]);
+    utils.setIncome("Average Income: £" + census[oa_code]["Gross Annual Pay, (2016)"]);
   });
 }
 
