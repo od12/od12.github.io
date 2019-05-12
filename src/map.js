@@ -4,7 +4,9 @@ const request = require('request');
 var center = ol.proj.transform([-0.118092, 51.5074], 'EPSG:4326', 'EPSG:3857');
 var view = new ol.View({
   center: center,
-  zoom: 11
+  zoom: 11, 
+  maxZoom: 20,
+  minZoom: 10
 });
 
 var layer = new ol.layer.Tile({
@@ -44,7 +46,6 @@ const d = {
   },
 
   addMarker: (latitude, longitude, name) => {
-    console.log("Adding marker");
     var marker = new ol.Feature({
       geometry: new ol.geom.Point(
         ol.proj.fromLonLat([longitude,latitude])
@@ -119,6 +120,32 @@ const d = {
     });
   },
 
+  getBroadband: (postcode) => {
+    var url = "http://127.0.0.1:5000/broadband?postcode="+postcode;
+    return new Promise((resolve, reject) => {
+      request.get(url, (err, resp, body) => {
+        if (err) reject(err);
+        else {
+          var data = JSON.parse(body);
+          resolve(data);
+        }
+      });
+    });
+  },
+
+  getMobile: (postcode) => {
+    var url = "http://127.0.0.1:5000/mobile?postcode="+postcode;
+    return new Promise((resolve, reject) => {
+      request.get(url, (err, resp, body) => {
+        if (err) reject(err);
+        else {
+          var data = JSON.parse(body);
+          resolve(data);
+        }
+      });
+    });
+  },
+
   getAddress: (place,api_key) => {
     var url = `https://maps.googleapis.com/maps/api/geocode/json?address=${place}&key=${api_key}`;
     return new Promise((resolve, reject) => {
@@ -140,6 +167,20 @@ const d = {
           }
         }
       });
+    });
+  },
+
+  getMapCenter: () =>{
+    var glbox = map.getView().calculateExtent(map.getSize()); 
+    var box = ol.proj.transformExtent(glbox, 'EPSG:3857', 'EPSG:4326'); 
+
+    var center_x = (box[0]+box[2])/2;
+    var center_y = (box[1]+box[3])/2;
+
+    console.log(center_x);
+    console.log(center_y);
+    return new Promise((resolve) =>{
+      resolve([center_y, center_x]);
     });
   },
 

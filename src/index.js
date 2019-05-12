@@ -11,12 +11,20 @@ map.configureOnClick((latitude, longitude) => {
 });
 
 map.configureOnZoom((level) => {
-  console.log(`zoom:${level}`);
-  if(level>17) map.getCrimedata().then(function(result) {
-    processCrimeData(result);
-  }, function(err) {
-    console.log(err); // Error: "It broke"
-  });;
+  if(level>17) {
+    map.getMapCenter().then(function(result){
+    displayPostCode(result[0], result[1]);
+    });
+    map.getCrimedata().then(function(result) {
+      processCrimeData(result);
+    }, function(err) {
+      console.log(err); // Error: "It broke"
+    });
+  }
+  else{
+    utils.resetContent();
+    utils.setPostcode("<i> Please zoom in further </i>");
+  }
 });
 
 var input = document.getElementById('pac-input');
@@ -30,7 +38,19 @@ function processHouseData(data){
 }
 
 function processCrimeData(data){
-  utils.setContent(data); 
+  utils.setCrime("There are " + data.length + " crimes in this area!"); 
+}
+
+function displayPostCode(lat, long){
+  map.getPostcode(lat, long).then(function(result){
+    utils.setPostcode("Postcode: " + result);
+    map.getBroadband(result).then(function(broadband){
+      utils.setBroadband("<p> Broadband Maximum Download: " + broadband.Availability[0].MaxPredictedDown + "</p> <p> Broadband Maximum Upload: " + broadband.Availability[0].MaxPredictedUp +"</p>");
+    });
+    map.getMobile(result).then(function(mobile){
+      utils.setMobile("EE Signal Strength: " + mobile.Availability[0].EEDataIndoor + " out of 4");
+    });
+  });
 }
 
 searchBox.addListener('places_changed', function() {

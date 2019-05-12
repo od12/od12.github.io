@@ -19,6 +19,44 @@ module.exports = {
     return $('#content');
   },
 
+  appendContent: (el) =>{
+    $('#content').append(el);
+  },
+
+  resetContent: ()=> {
+    $('#crime').empty();
+    $('#postcode').empty();
+    $('#broadband').empty();
+    $('#mobile').empty();
+    $('#politics').empty();
+    $('#demographics').empty();
+  },
+
+  setCrime: (el) =>{
+    $('#crime').empty();
+    $('#crime').append(el);
+  },
+  setPostcode: (el) =>{
+    $('#postcode').empty();
+    $('#postcode').append(el);
+  },
+  setBroadband: (el) =>{
+    $('#broadband').empty();
+    $('#broadband').append(el);
+  },
+  setMobile: (el) =>{
+    $('#mobile').empty();
+    $('#mobile').append(el);
+  },
+  setPolitics: (el) =>{
+    $('#politics').empty();
+    $('#politics').append(el);
+  },
+  setDemographics: (el) =>{
+    $('#demographics').empty();
+    $('#demographics').append(el);
+  },
+
   openSidebar: () => {
     sidebar.open('home');
   },
