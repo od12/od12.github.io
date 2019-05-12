@@ -58,6 +58,7 @@ function displayPostCode(lat, long){
     if (party == "Cons") party = "Conservatives";
     if (party == "Lib Dem") party = "Liberal Democrats";
     utils.setPolitics("Political party: " + party);
+    utils.setDemographics("Borough Population: " + census[oa_code]["GLA Population Estimate 2017"]);
   });
 }
 
