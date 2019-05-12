@@ -3,6 +3,7 @@ const map = require('./map');
 const utilities = require('./utilities');
 const apikeys = require('./apikeys');
 const utils = require('./utils');
+const census = require('./census');
 
 
 map.configureOnClick((latitude, longitude) => {
@@ -43,13 +44,20 @@ function processCrimeData(data){
 
 function displayPostCode(lat, long){
   map.getPostcode(lat, long).then(function(result){
-    utils.setPostcode("Postcode: " + result);
-    map.getBroadband(result).then(function(broadband){
+    utils.setPostcode("Postcode: " + result.postcode);
+    map.getBroadband(result.postcode).then(function(broadband){
       utils.setBroadband("<p> Broadband Maximum Download: " + broadband.Availability[0].MaxPredictedDown + "</p> <p> Broadband Maximum Upload: " + broadband.Availability[0].MaxPredictedUp +"</p>");
     });
-    map.getMobile(result).then(function(mobile){
+    map.getMobile(result.postcode).then(function(mobile){
       utils.setMobile("EE Signal Strength: " + mobile.Availability[0].EEDataIndoor + " out of 4");
     });
+    var oa_code = result.codes.admin_district;
+    utils.setArea(census[oa_code]["Area name"]);
+    var party = census[oa_code]["Political control in council"];
+    if (party == "Lab") party = "Labour";
+    if (party == "Cons") party = "Conservatives";
+    if (party == "Lib Dem") party = "Liberal Democrats";
+    utils.setPolitics("Political party: " + party);
   });
 }
 

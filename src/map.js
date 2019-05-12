@@ -109,8 +109,7 @@ const d = {
         else {
           var data = JSON.parse(body);
           if (data.result && data.result.length) {
-            var postcode = data.result[0].postcode;
-            console.log(`Found postcode: ${postcode}`);
+            var postcode = data.result[0];
             resolve(postcode);
           } else {
             reject(err);
@@ -177,8 +176,6 @@ const d = {
     var center_x = (box[0]+box[2])/2;
     var center_y = (box[1]+box[3])/2;
 
-    console.log(center_x);
-    console.log(center_y);
     return new Promise((resolve) =>{
       resolve([center_y, center_x]);
     });

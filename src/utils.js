@@ -24,6 +24,7 @@ module.exports = {
   },
 
   resetContent: ()=> {
+    $('#area').empty();
     $('#crime').empty();
     $('#postcode').empty();
     $('#broadband').empty();
@@ -39,6 +40,10 @@ module.exports = {
   setPostcode: (el) =>{
     $('#postcode').empty();
     $('#postcode').append(el);
+  },
+  setArea: (el) =>{
+    $('#area').empty();
+    $('#area').append(el);
   },
   setBroadband: (el) =>{
     $('#broadband').empty();
