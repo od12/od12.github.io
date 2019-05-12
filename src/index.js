@@ -29,8 +29,8 @@ function processHouseData(data){
   }
 }
 
-function processCrimeData(){
-  //todo
+function processCrimeData(data){
+  utils.setContent(data); 
 }
 
 searchBox.addListener('places_changed', function() {
