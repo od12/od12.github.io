@@ -46,11 +46,11 @@ function processCrimeData(data){
 function displayPostCode(lat, long){
   map.getPostcode(lat, long).then(function(result){
 
-    zoopla.addProperties(result.postcode, 1);
+    //zoopla.addProperties(result.postcode, 1);
 
     utils.setPostcode("Postcode: " + result.postcode);
     map.getBroadband(result.postcode).then(function(broadband){
-      utils.setBroadband("<p> Broadband Maximum Download: " + broadband.Availability[0].MaxPredictedDown + "</p> <p> Broadband Maximum Upload: " + broadband.Availability[0].MaxPredictedUp +"</p>");
+      utils.setBroadband("Broadband Maximum Download: " + broadband.Availability[0].MaxPredictedDown + "mbps", "Broadband Maximum Upload: " + broadband.Availability[0].MaxPredictedUp +"mbps");
     });
     map.getMobile(result.postcode).then(function(mobile){
       utils.setMobile("EE Signal Strength: " + mobile.Availability[0].EEDataIndoor + " out of 4");
@@ -64,7 +64,7 @@ function displayPostCode(lat, long){
     utils.setPolitics("Political party: " + party);
     utils.setDemographics("Borough Population: " + census[oa_code]["GLA Population Estimate 2017"]);
     utils.setAge("Average Age: " + census[oa_code]["Average Age, 2017"]);
-    utils.setUnemployment("Unemployment Rate: " + census[oa_code]["Unemployment rate (2015)"]);
+    utils.setUnemployment("Unemployment Rate: " + census[oa_code]["Unemployment rate (2015)"] + "%");
     utils.setIncome("Average Income: £" + census[oa_code]["Gross Annual Pay, (2016)"]);
   });
 }

@@ -28,6 +28,7 @@ module.exports = {
     $('#crime').empty();
     $('#postcode').empty();
     $('#broadband').empty();
+    $('#broadbandup').empty();
     $('#mobile').empty();
     $('#politics').empty();
     $('#demographics').empty();
@@ -48,9 +49,11 @@ module.exports = {
     $('#area').empty();
     $('#area').append(el);
   },
-  setBroadband: (el) =>{
+  setBroadband: (el, wl) =>{
     $('#broadband').empty();
     $('#broadband').append(el);
+    $('#broadbandup').empty();
+    $('#broadbandup').append(wl);
   },
   setMobile: (el) =>{
     $('#mobile').empty();
